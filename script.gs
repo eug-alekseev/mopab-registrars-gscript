@@ -84,7 +84,7 @@ function processRow(row, result_cell, status_cell, sent_at_cell) {
   });
 
   // sending docs
-  if (["review recieved", "finalized"].includes(status) && doc_url) {
+  if (["review received", "finalized"].includes(status) && doc_url) {
     const file_id = doc_url.split("id=").slice(-1);
     const gdoc = DriveApp.getFileById(file_id);
     const recipients = EMAILS[row[getAlphabetIndex(COLUMNS_CONFIG.DOCTOR_NAME)]];
