@@ -14,8 +14,12 @@ function getAlphabetIndex(c) {
   return number
 };
 
-function generateDoc(dir_id, file_name, row) {
-  const googleDocTemplate = DriveApp.getFileById(TEMPLATE_UID);
+function generateDoc(dir_id, file_name, row, is_finalized) {
+  let googleDocTemplate = DriveApp.getFileById(REVIEWED_TEMPLATE_UID);
+  if (is_finalized) {
+    googleDocTemplate = DriveApp.getFileById(FINALIZED_TEMPLATE_UID);
+  }
+  
   const destinationFolder = DriveApp.getFolderById(dir_id);
   const doc_copy = googleDocTemplate.makeCopy(file_name, destinationFolder);
   const doc = DocumentApp.openById(doc_copy.getId());
@@ -79,7 +83,7 @@ function processRow(row, result_cell, status_cell, sent_at_cell) {
   // saving docs
   let doc_url = "";
   dirs.forEach(function(dir) {
-    doc_url = generateDoc(dir, filename, row);
+    doc_url = generateDoc(dir, filename, row, status === "finalized");
     result_cell.setValue(doc_url);
   });
 
