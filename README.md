@@ -1,0 +1,1 @@
+# mopab-registrars-gscript
