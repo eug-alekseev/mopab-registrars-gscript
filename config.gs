@@ -1,6 +1,8 @@
 const SHEETS = ["Sheet1", "Sheet2"];  // названия листов, для которых запускать обработку
 
-const TEMPLATE_UID = "TEMPLATE_UID";
+const REVIEWED_TEMPLATE_UID = "GDOC_TEMPLATE_UID";
+const FINALIZED_TEMPLATE_UID = "GDOC_TEMPLATE_UID";
+
 const COLUMNS_CONFIG = {
   DOCTOR_NAME: "C",
   CLINIC_NAME: "D",
