@@ -90,7 +90,7 @@ function processRow(row, result_cell, status_cell, sent_at_cell) {
     const recipients = EMAILS[row[getAlphabetIndex(COLUMNS_CONFIG.DOCTOR_NAME)]];
     if (recipients) {
       MailApp.sendEmail({
-        to: recipients,
+        to: recipients.join(","),
         subject: `МОПАБ : Заключение ${filename}`,
         htmlBody: "",
         attachments: [gdoc.getAs(MimeType.PDF)]
