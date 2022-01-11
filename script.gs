@@ -55,7 +55,7 @@ function processSheet(sheet_name) {
 };
 
 function processRow(row, result_cell, status_cell, sent_at_cell) {
-  const filename = `${row[getAlphabetIndex(COLUMNS_CONFIG.PATIENT_NAME)]}, номер ${row[getAlphabetIndex(COLUMNS_CONFIG.NUMBERS)]}, стекол ${row[getAlphabetIndex(COLUMNS_CONFIG.SLIDE_AMOUNT)]}, блоков ${row[getAlphabetIndex(COLUMNS_CONFIG.BLOCK_AMOUNT)]}`;
+  const filename = row[getAlphabetIndex(COLUMNS_CONFIG.PATIENT_NAME)];
 
   const nsps = row[getAlphabetIndex(COLUMNS_CONFIG.NSPC_DIAGNOSIS)];
   let status = row[getAlphabetIndex(COLUMNS_CONFIG.AUTOMATION_STATUS)];
@@ -95,7 +95,7 @@ function processRow(row, result_cell, status_cell, sent_at_cell) {
     if (recipients) {
       MailApp.sendEmail({
         to: recipients.join(","),
-        subject: `МОПАБ : Заключение ${filename}`,
+        subject: `Заключение МОПАБ (${row[getAlphabetIndex(COLUMNS_CONFIG.CLINIC_NAME)]}, ${filename})`,
         htmlBody: "",
         attachments: [gdoc.getAs(MimeType.PDF)]
       });
